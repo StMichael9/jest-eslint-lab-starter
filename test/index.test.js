@@ -58,8 +58,25 @@ describe("filterActiveUsers", () => {
   });
 });
 
-describe("Generates correct log string for valid inputs", () => {
-    it("Log", () => {
-        const 
-    })
-})
+describe("logAction", () => {
+  it("Generates correct log string for valid inputs", () => {
+    const result = logAction("LOGIN", "Saint Michael");
+    expect(result).toContain("LOGIN");
+    expect(result).toContain("Saint Michael");
+  });
+
+  it("Handles missing action", () => {
+    const result = logAction("", "Saint Michael");
+    expect(result).toContain("Saint Michael");
+  });
+
+  it("Handles missing username", () => {
+    const result = logAction("LOGIN", "");
+    expect(result).toContain("LOGIN");
+  });
+
+  it("Handles empty strings for both inputs", () => {
+    const result = logAction("", "");
+    expect(typeof result).toBe("string");
+  });
+});
